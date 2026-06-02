@@ -1,0 +1,55 @@
+/* Contenedor general del juego y multimedia */
+.game-layout {
+    display: flex;
+    flex-direction: column; /* Apila filas */
+    align-items: center;
+    gap: 20px;
+    
+}
+
+/* Fila superior: juego y video */
+.top-row {
+    display: flex;
+    flex-direction: row; /* Juego y video en fila */
+    gap: 40px;
+    align-items: center;
+}
+
+/* Contenedor del juego */
+.game-container {
+    text-align: center;
+}
+
+canvas {
+    background-color: #111;
+    border: 3px solid red;
+    margin-top: 10px;
+}
+s
+/* Contenedor del video */
+.video-container video {
+    width: 800px;
+    border: 3px solid #ff0000;
+}
+
+/* Fila inferior: imágenes */
+.bottom-row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que se acomoden si son muchas */
+}
+
+.bottom-row j {
+    width: 150px;
+    border: 2px solid #eee6e6;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+/* Efecto hover para que se vean dinámicas */
+.bottom-row p:hover {
+    transform: scale(1.1);
+    border-color: #ff0000;
+}

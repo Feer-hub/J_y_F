@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Jueguitooo JyF 🏎❤️</title>
+    <link rel="stylesheet" href="jss.css">
+</head>
+<body>
+    <div class="game-layout">
+        <!-- Fila superior: juego y video -->
+        <div class="top-row">
+            <div class="game-container">
+                <h1>🏎 Come Corazones ❤️</h1>
+                <canvas id="gameCanvas" width="400" height="400"></canvas>
+                <div id="resultado"></div>
+            </div>
+            <div class="video-container" id="videoBox">
+                <!-- El video se insertará aquí al ganar -->
+            </div>
+        </div>
+
+        <!-- Fila inferior: imágenes -->
+        <div class="bottom-row" id="fotos">
+            <!-- Las imágenes se insertarán aquí al ganar -->
+        </div>
+    </div>
+
+<script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let car = { x: 200, y: 200, size: 20 };
+    let hearts = [];
+    let score = 0;
+    let tiempo = 11; // duración del juego en segundos
+    let juegoTerminado = false;
+    const maxScore = 3;
+
+    // Evita que las flechas muevan la página
+    window.addEventListener("keydown", function(e) {
+        if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(e.key)) {
+            e.preventDefault();
+        }
+    }, false);
+
+    function spawnHeart() {
+        if (hearts.length < maxScore) {
+            const x = Math.floor(Math.random() * (canvas.width - 20));
+            const y = Math.floor(Math.random() * (canvas.height - 20));
+            hearts.push({ x, y, size: 20 });
+        }
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.font = "20px Arial";
+        ctx.fillText("🏎", car.x, car.y);
+
+        hearts.forEach(h => {
+            ctx.fillText("❤️", h.x, h.y);
+        });
+
+        ctx.fillStyle = "white";
+        ctx.fillText("Puntos: " + score, 10, 20);
+        ctx.fillText("Tiempo: " + tiempo, 300, 20);
+    }
+
+    document.addEventListener("keydown", (event) => {
+        if (juegoTerminado) return;
+
+        if (event.key === "ArrowUp") car.y -= 20;
+        if (event.key === "ArrowDown") car.y += 20;
+        if (event.key === "ArrowLeft") car.x -= 20;
+        if (event.key === "ArrowRight") car.x += 20;
+
+        // Pierde si toca los bordes
+        if (car.x < 0 || car.y < 0 || car.x > canvas.width - car.size || car.y > canvas.height - car.size) {
+            terminarJuego(false);
+            return;
+        }
+
+        hearts = hearts.filter(h => {
+            const collision = Math.abs(car.x - h.x) < 20 && Math.abs(car.y - h.y) < 20;
+            if (collision) score++;
+            return !collision;
+        });
+
+        draw();
+    });
+
+    function terminarJuego(ganar = null) {
+        juegoTerminado = true;
+        const resultado = document.getElementById("resultado");
+        const galeria = document.getElementById("galeria");
+        const videoBox = document.getElementById("videoBox");
+
+        if (ganar === false || score < maxScore) {
+            resultado.innerHTML = "<h2>😢 Perdiste cariño... intenta otra vez</h2>";
+        } else {
+            resultado.innerHTML = "<h2>🎉 ¡Ganaste cariño miooo! 🎉</h2>";
+            // Inserta el video a la derecha del juego
+            videoBox.innerHTML = `<video src="videos/video.mp4" controls></video>`;
+            // Inserta las imágenes abajo
+            galeria.innerHTML = `
+                <img src="fotos/j.jpg" alt="j">
+                <img src="fotos/p.jpg" alt="p">
+                <img src="fotos/a.jpg" alt="a">
+                <img src="fotos/b.jpg" alt="b">
+            `;
+        }
+    }
+
+    // Temporizador
+    setInterval(() => {
+        if (!juegoTerminado) {
+            tiempo--;
+            if (tiempo <= 0) {
+                if (score >= maxScore) {
+                    terminarJuego(true);
+                } else {
+                    terminarJuego(false);
+                }
+            }
+            draw();
+        }
+    }, 1000);
+
+    setInterval(() => {
+        if (!juegoTerminado) spawnHeart();
+    }, 1500);
+
+    draw();
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+    
+        body {
+            background: linear-gradient(to right, #e10600, #000000); /* Fórmula 1 vibes */
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        
+
+        .login-container {
+            background-color: #1a1a1a;
+            border: 3px solid #0047ab; /* Azul Spiderman */
+            border-radius: 15px;
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0px 0px 20px #ffcc00; /* toque amarillo Fórmula 1 */
+        }
+
+        h1 {
+            color: #ff0000; /* Rojo Spiderman */
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 2px solid #0047ab;
+            border-radius: 8px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        input[type="submit"] {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff0000;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ffcc00;
+            color: #000;
+        }
+    }

@@ -1,0 +1,33 @@
+
+        body {
+            background: linear-gradient(to right, #e10600, #000000); /* Fórmula 1 */
+            font-family: Arial, sans-serif;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        
+
+        .container {
+            margin-top: 100px;
+            background-color: #1a1a1a;
+            border: 3px solid #0047ab; /* Azul Spiderman */
+            border-radius: 15px;
+            padding: 30px;
+            width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0px 0px 20px #ffcc00; /* toque racing */
+        }
+
+        h1 {
+            color: #ff0000; /* Rojo Spiderman */
+        }
+
+        .mensaje {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ffcc00;
+        } 
+        } 
+    
